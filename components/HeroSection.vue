@@ -1,4 +1,4 @@
-// components/HeroSection.vue
+
 <template>
   <section class="hero-section min-h-screen flex items-center justify-center relative overflow-hidden">
     <!-- Fondo animado -->
