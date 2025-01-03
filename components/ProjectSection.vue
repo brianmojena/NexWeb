@@ -1,0 +1,145 @@
+<template>
+  <section class="py-20 relative z-10">
+    <div class="container mx-auto px-4">
+      <h2 class="glitch-title text-4xl font-bold mb-12 text-center">
+        Proyectos Destacados
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div v-for="(proyecto, index) in proyectos"
+             :key="proyecto.titulo"
+             class="proyecto-card"
+             :style="{ animationDelay: `${index * 0.2}s` }">
+          <div class="image-container">
+            <img :src="proyecto.imagen"
+                 :alt="proyecto.titulo"
+                 class="w-full h-64 object-cover" />
+            <div class="cyber-overlay"></div>
+          </div>
+          <div class="content-overlay">
+            <h3 class="text-xl font-bold mb-2 cyber-text">{{ proyecto.titulo }}</h3>
+            <p class="text-gray-300">{{ proyecto.descripcion }}</p>
+            <button class="cyber-btn mt-4">Ver más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+defineProps({
+  proyectos: {
+    type: Array,
+    required: true
+  }
+});
+</script>
+
+<style scoped>
+.proyecto-card {
+  position: relative;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  animation: slideUp 0.8s forwards;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+      45deg,
+      rgba(0, 255, 255, 0.1),
+      rgba(255, 0, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.content-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.7),
+      transparent
+  );
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.proyecto-card:hover .content-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.proyecto-card:hover .cyber-overlay {
+  opacity: 1;
+}
+
+.cyber-text {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.cyber-btn {
+  background: transparent;
+  border: 1px solid #00ffff;
+  color: #00ffff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 255, 0.2),
+      transparent
+  );
+  transition: left 0.3s;
+}
+
+.cyber-btn:hover::before {
+  left: 100%;
+}
+
+.cyber-btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
