@@ -30,7 +30,7 @@
       </p>
 
       <!-- Botón con efecto neón -->
-      <button class="cyber-button">
+      <button class="cyber-button" @click="scrollToServices">
         <span>Descubre nuestros servicios</span>
         <div class="cyber-button-glitch"></div>
       </button>
@@ -294,3 +294,9 @@
   }
 }
 </style>
+
+<script setup>
+const scrollToServices = () => {
+  document.querySelector('#servicios').scrollIntoView({ behavior: 'smooth' });
+};
+</script>

@@ -1,6 +1,6 @@
 
 <template>
-  <section class="py-20 relative z-10">
+  <section id="contacto" class="py-20 relative z-10">
     <div class="container mx-auto px-4 text-center">
       <h2 class="glitch-title text-4xl font-bold mb-8">
         Contáctanos

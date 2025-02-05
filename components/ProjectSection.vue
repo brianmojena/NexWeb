@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 relative z-10">
+  <section id="proyectos" class="py-20 relative z-10">
     <div class="container mx-auto px-4">
       <h2 class="glitch-title text-4xl font-bold mb-12 text-center">
         Proyectos Destacados
@@ -18,7 +18,23 @@
           <div class="content-overlay">
             <h3 class="text-xl font-bold mb-2 cyber-text">{{ proyecto.titulo }}</h3>
             <p class="text-gray-300">{{ proyecto.descripcion }}</p>
-            <button class="cyber-btn mt-4">Ver más</button>
+            <button class="cyber-btn mt-4" @click="openModal(proyecto)">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Modal -->
+      <div v-if="selectedProject" class="fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-black/80" @click="closeModal"></div>
+        <div class="relative bg-gray-900 p-6 rounded-lg border border-cyan-500/50 max-w-lg w-full">
+          <button class="absolute top-4 right-4 text-cyan-400 hover:text-cyan-300" @click="closeModal">
+            <i class="fas fa-times"></i>
+          </button>
+          <h3 class="text-2xl font-bold mb-4 text-cyan-400">{{ selectedProject.titulo }}</h3>
+          <img :src="selectedProject.imagen" :alt="selectedProject.titulo" class="w-full mb-4 rounded">
+          <p class="text-gray-300 mb-4">{{ selectedProject.descripcion }}</p>
+          <div class="flex justify-end">
+            <button class="cyber-btn" @click="closeModal">Cerrar</button>
           </div>
         </div>
       </div>
@@ -27,12 +43,26 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 defineProps({
   proyectos: {
     type: Array,
     required: true
   }
 });
+
+const selectedProject = ref(null);
+
+const openModal = (project) => {
+  selectedProject.value = project;
+  document.body.style.overflow = 'hidden';
+};
+
+const closeModal = () => {
+  selectedProject.value = null;
+  document.body.style.overflow = 'auto';
+};
 </script>
 
 <style scoped>

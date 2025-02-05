@@ -1,6 +1,6 @@
 
 <template>
-  <section class="py-20 relative z-10">
+  <section id="servicios" class="py-20 relative z-10">
     <div class="container mx-auto px-4">
       <h2 class="glitch-title text-4xl font-bold mb-12 text-center">
         Nuestros Servicios
@@ -19,6 +19,15 @@
     </div>
   </section>
 </template>
+
+<script setup>
+defineProps({
+  servicios: {
+    type: Array,
+    required: true
+  }
+});
+</script>
 
 <style scoped>
 .cyber-card {
@@ -56,6 +65,30 @@
   to {
     opacity: 1;
     transform: translateY(0);
+    transition: transform 0.3s, box-shadow 0.3s;
   }
+}
+
+.cyber-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cyber-card:hover::after {
+  opacity: 1;
 }
 </style>
