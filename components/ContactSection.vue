@@ -12,7 +12,7 @@
       <div class="email-container mb-12">
         <div class="cyber-terminal">
           <span class="terminal-prompt">></span>
-          <span class="terminal-text">contacto@nex.com</span>
+          <span class="terminal-text">nexenterprise@gmail.com</span>
           <button @click="copyEmail" class="copy-btn">
             <span class="btn-text">Copiar Email</span>
             <span class="btn-glitch"></span>
